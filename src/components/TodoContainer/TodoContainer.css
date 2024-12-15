@@ -1,0 +1,10 @@
+.content{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 2vw;
+}
+
+.delete-btn{
+    height: 5vh;
+}

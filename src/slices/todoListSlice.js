@@ -10,12 +10,31 @@ const todoListSlice = createSlice({
             console.log(action.payload);
             const newTask = {
                 task : action.payload,
-                id : getNewId(state.list)
+                id : getNewId(state.list),
+                completed : false
             };
             console.log("newTask",newTask);
             state.list.push(newTask);
             console.log("state.list" , state.list);
         },
+
+        deleteTask : (state,action) => {
+            console.log("here");
+            console.log("action.payload",action.payload);
+            const id = action.payload;
+            state.list = state.list.filter((ele) => ele.id != id);
+            console.log("state.list",state.list);
+        },
+
+        toggleStatus :(state,action) => {
+            const id = action.payload;
+            const task = state.list.find((task) => task.id === id);
+            if (task) {
+                task.completed = !task.completed; 
+            }
+
+            console.log("updated state list" ,state.list);
+        }
         
     }
 });
@@ -30,5 +49,5 @@ const getNewId = (todoList) => {
     return newId+1;
 }
 
-export const {addTask} = todoListSlice.actions;
+export const {addTask,deleteTask,toggleStatus} = todoListSlice.actions;
 export default todoListSlice.reducer;
