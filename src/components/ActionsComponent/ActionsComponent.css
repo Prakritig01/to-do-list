@@ -1,0 +1,9 @@
+.filter-by-actions{
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-by-actions button{
+    width: 7vw;
+    margin-top: 5px;
+}
