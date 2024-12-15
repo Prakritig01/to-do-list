@@ -1,19 +1,19 @@
-import React, { useContext } from 'react'
-import TodoContext from '../../context/todoContext'
+import React, { useContext } from "react";
+
+import { useSelector } from "react-redux";
+import { selectToDoFromList } from "./../../slices/todoListSlice";
 
 const TodoContainer = () => {
-    let {todoList} = useContext(TodoContext);
-    // console.log("todolist in container", todoList);
+  const todoList = useSelector(selectToDoFromList);
   return (
     <div className="todo-container">
-        {todoList.map((item, i) => (
-            <div key = {i}>
-                {console.log("item",item)}
-                <p>{item}</p>
-            </div>
-        )) }
+      {todoList.map((item) => (
+        <div key={item.id}>
+          <p>{item.task}</p>
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default TodoContainer
+export default TodoContainer;

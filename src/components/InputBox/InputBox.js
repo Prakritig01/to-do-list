@@ -1,26 +1,28 @@
 import React, { useContext, useState } from "react";
 import TodoContext from "../../context/todoContext";
+import { useDispatch } from "react-redux";
+import { addTask } from "../../slices/todoListSlice";
 
 const InputBox = () => {
-    const { addTask } = useContext(TodoContext);
-    const [singleValue, setSingleValue] = useState('');
+    const [singleTask, setSingleTask] = useState('');
+    const dispatch = useDispatch();
+
+    const handleKeyDown = (e) =>{
+        if(e.key === 'Enter' && singleTask.trim() != ""){
+            dispatch(addTask(singleTask)); 
+            setSingleTask(""); 
+        }
+    }
 
     return (
         <div className="input">
             <input 
                 type="text" 
                 placeholder="What needs to be done?" 
-                value={singleValue} 
-                onChange={(e) => setSingleValue(e.target.value)} 
+                value={singleTask} 
+                onChange={(e) => setSingleTask(e.target.value)} 
+                onKeyDown={handleKeyDown}
             />
-            <button 
-                onClick={() => {
-                    addTask(singleValue); // Add the task
-                    setSingleValue("");   // Clear the input field
-                }}
-            >
-                Add Task
-            </button>
         </div>
     );
 };
