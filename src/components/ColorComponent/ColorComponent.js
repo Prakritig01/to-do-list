@@ -23,7 +23,9 @@ const ColorComponent = () => {
     <div className="color-component">
       <h2>Filter by Color</h2>
       <div className="options">
-        {selectOptions.map((color, index) => (
+        {selectOptions.map((color, index) => {
+          if(color === '') return null;
+          return (
           <div key={index} className="checkbox-item">
             <label>
               <input
@@ -35,7 +37,7 @@ const ColorComponent = () => {
               {color}
             </label>
           </div>
-        ))}
+)})}
       </div>
     </div>
   );
