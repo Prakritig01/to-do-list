@@ -1,0 +1,11 @@
+.filter-by-status{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.filter-by-status button{
+    width: 6vw;
+    margin-top: 5px;
+}

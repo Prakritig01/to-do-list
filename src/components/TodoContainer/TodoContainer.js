@@ -3,10 +3,12 @@ import './TodoContainer.css'
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectToDoFromList ,deleteTask,toggleStatus} from "./../../slices/todoListSlice";
+import { selectFilteredTask } from "../../slices/filterSlice";
 
 const TodoContainer = () => {
   const dispatch = useDispatch();
-  const todoList = useSelector(selectToDoFromList);
+  const todoList = useSelector(selectFilteredTask);
+  // console.log("todoList",todoList);
   
   
   return (
