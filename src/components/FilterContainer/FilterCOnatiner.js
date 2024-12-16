@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import ActionsComponent from '../ActionsComponent/ActionsComponent';
 import RemainingToDos from '../RemainingRoDos/RemainingToDos';
 import StatusComponent from '../StatusComponent/StatusComponent';
+import ColorComponent from '../ColorComponent/ColorComponent';
 import './FilterContainer.css'
 
 
@@ -13,6 +14,7 @@ const FilterConatiner = () => {
         <ActionsComponent/>
         <RemainingToDos/>
         <StatusComponent/>
+        <ColorComponent/>
     </div>
   )
 }

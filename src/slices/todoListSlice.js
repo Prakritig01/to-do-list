@@ -7,22 +7,26 @@ const todoListSlice = createSlice({
             {
                 task : "Redux",
                 id : 0,
-                completed : false
+                completed : false,
+                color : '',
             },
             {
                 task : "Coding",
                 id : 1,
-                completed : false
+                completed : false,
+                color : '',
             },
             {
                 task : "Reading",
                 id : 2,
-                completed : false
+                completed : false,
+                color : '',
             },
             {
                 task : "Sleeping",
                 id : 3,
-                completed : false
+                completed : false,
+                color : '',
             }
         ]
     },
@@ -66,13 +70,21 @@ const todoListSlice = createSlice({
             state.list = state.list.filter((ele) => ele.completed === false)
         },
 
+        setColor : (state,action) => {
+            const {id,selectedColor} = action.payload;
+            // console.log("id",id);
+            // console.log("selectedColor",selectedColor);
+            state.list = state.list.map((ele) => ele.id === id ? { ...ele, color: selectedColor } : ele);
+            // console.log(state.list);
+        },
+
     }
 });
 
 export const selectToDoFromList = (state) => state.toDoKeyInStore.list;
 export const selectIncompleteTaskCount = (state) =>
     state.toDoKeyInStore.list.filter(task => !task.completed).length;
-
+export const selectedColor = (index)=>(state) => state.toDoKeyInStore.list[index].color;
 
 const getNewId = (todoList) => {
     let newId = -1;
@@ -82,5 +94,7 @@ const getNewId = (todoList) => {
     return newId+1;
 }
 
-export const {addTask,deleteTask,toggleStatus,markAllCompleted,clearCompleted} = todoListSlice.actions;
+
+
+export const {addTask,deleteTask,toggleStatus,markAllCompleted,clearCompleted,setColor} = todoListSlice.actions;
 export default todoListSlice.reducer;
